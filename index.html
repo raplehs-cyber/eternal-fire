@@ -7,10 +7,8 @@
     <!-- 
       Project: ETERNAL FIRE Clan Management Panel
       Description: A simple, open-source single-page application for managing clan inventory and stock data.
-      Features: Basic authentication, local storage data persistence, real-time total calculations.
     -->
     <style>
-        /* CSS Variables for easier theme customization */
         :root {
             --bg-dark: #121212;
             --bg-panel: #1e1e1e;
@@ -21,139 +19,29 @@
             --text-muted: #dddddd;
             --border-color: #333333;
         }
-
-        /* Basic Reset and Global Styles */
-        body { 
-            background-color: var(--bg-dark); 
-            color: var(--text-light); 
-            font-family: 'Segoe UI', Tahoma, sans-serif; 
-            margin: 0; 
-            padding: 20px; 
-        }
-
-        /* Main Container Layout */
-        .container { 
-            max-width: 900px; 
-            margin: 0 auto; 
-            background: var(--bg-panel); 
-            padding: 30px; 
-            border-radius: 10px; 
-            border: 1px solid var(--color-primary); 
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2); 
-        }
-
-        /* Typography */
-        h1, h2 { 
-            color: var(--color-primary); 
-            text-align: center; 
-        }
-
-        .welcome-msg { 
-            background: rgba(255, 215, 0, 0.1); 
-            padding: 20px; 
-            border-left: 4px solid var(--color-primary); 
-            border-radius: 4px; 
-            line-height: 1.6; 
-            margin-bottom: 25px; 
-            font-style: italic; 
-            font-size: 15px;
-        }
-
-        /* Forms and Inputs */
-        .form-group { 
-            margin-bottom: 15px; 
-        }
-        
-        label { 
-            display: block; 
-            margin-bottom: 5px; 
-            color: var(--text-muted); 
-            font-weight: bold;
-        }
-        
-        input { 
-            width: 100%; 
-            padding: 12px; 
-            border: 1px solid var(--border-color); 
-            border-radius: 5px; 
-            background: var(--bg-input); 
-            color: var(--text-light); 
-            box-sizing: border-box; 
-            font-size: 14px;
-        }
-        
-        input:focus { 
-            outline: none; 
-            border-color: var(--color-primary); 
-        }
-        
-        /* Buttons */
-        button { 
-            width: 100%; 
-            padding: 15px; 
-            background: var(--color-primary); 
-            color: #000; 
-            border: none; 
-            border-radius: 5px; 
-            font-weight: bold; 
-            cursor: pointer; 
-            margin-top: 10px; 
-            font-size: 16px; 
-            transition: background-color 0.3s ease; 
-        }
-        
-        button:hover { 
-            background: var(--color-primary-hover); 
-        }
-
-        /* Data Table Styles */
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            margin-top: 20px; 
-            font-size: 14px; 
-        }
-        
-        th, td { 
-            padding: 12px; 
-            text-align: center; 
-            border-bottom: 1px solid var(--border-color); 
-        }
-        
-        th { 
-            color: var(--color-primary); 
-            border-bottom: 2px solid var(--color-primary); 
-        }
-        
-        tr:hover { 
-            background: var(--bg-input); 
-        }
-        
-        .total-row { 
-            font-weight: bold; 
-            color: var(--color-primary); 
-            background: rgba(255, 215, 0, 0.1); 
-        }
-
-        /* View State Management */
-        #login-section, #dashboard-section { 
-            display: none; 
-        }
-        
-        #login-section.active, #dashboard-section.active { 
-            display: block; 
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        body { background-color: var(--bg-dark); color: var(--text-light); font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: var(--bg-panel); padding: 30px; border-radius: 10px; border: 1px solid var(--color-primary); box-shadow: 0 0 20px rgba(255, 215, 0, 0.2); }
+        h1, h2 { color: var(--color-primary); text-align: center; }
+        .welcome-msg { background: rgba(255, 215, 0, 0.1); padding: 20px; border-left: 4px solid var(--color-primary); border-radius: 4px; line-height: 1.6; margin-bottom: 25px; font-style: italic; font-size: 15px;}
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; color: var(--text-muted); font-weight: bold;}
+        input { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 5px; background: var(--bg-input); color: var(--text-light); box-sizing: border-box; font-size: 14px;}
+        input:focus { outline: none; border-color: var(--color-primary); }
+        button { width: 100%; padding: 15px; background: var(--color-primary); color: #000; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 10px; font-size: 16px; transition: 0.3s ease; }
+        button:hover { background: var(--color-primary-hover); }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px; }
+        th, td { padding: 12px; text-align: center; border-bottom: 1px solid var(--border-color); }
+        th { color: var(--color-primary); border-bottom: 2px solid var(--color-primary); }
+        tr:hover { background: var(--bg-input); }
+        .total-row { font-weight: bold; color: var(--color-primary); background: rgba(255, 215, 0, 0.1); }
+        #login-section, #dashboard-section { display: none; }
+        #login-section.active, #dashboard-section.active { display: block; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- ================= LOGIN SECTION ================= -->
+        <!-- LOGIN SECTION -->
         <div id="login-section" class="active">
             <h1>ETERNAL FIRE</h1>
             <div class="form-group">
@@ -163,7 +51,7 @@
             <button onclick="app.authenticate()">Giriş Yap / Login</button>
         </div>
 
-        <!-- ================= DASHBOARD SECTION ================= -->
+        <!-- DASHBOARD SECTION -->
         <div id="dashboard-section">
             <h1>ETERNAL FIRE YÖNETİM PANELİ</h1>
             <div class="welcome-msg">
@@ -171,44 +59,19 @@
                 Bu sitenin kuruluş amacı, klan savaşlarına daha iyi odaklanabilmek ve galibiyet serimizi sürdürebilmek için hesabınızdaki stoklarınızın detaylarını girebileceğiniz ve yönetim olarak işimizi kolaylaştırmayı hedeflediğimiz bir sitedir. Lütfen gerçek ve doğru bilgileri girerek stok bilgilerinizi kayıt altına alın ve stok durumunuzu günlük olarak güncellemeyi unutmayın. Birlikte daha güçlüyüz!
             </div>
 
-            <!-- Data Entry Form -->
             <h2>Stok Girişi / Inventory Entry</h2>
-            <div class="form-group">
-                <label for="playerName">Oyun İçi Adınız / Player Name:</label>
-                <input type="text" id="playerName" placeholder="Oyundaki tam adınızı yazın">
-            </div>
+            <div class="form-group"><label for="playerName">Oyun İçi Adınız / Player Name:</label><input type="text" id="playerName" placeholder="Oyundaki tam adınızı yazın"></div>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
-                <div class="form-group">
-                    <label for="hammerCount">Çekiç / Hammer:</label>
-                    <input type="number" id="hammerCount" value="0" min="0">
-                </div>
-                <div class="form-group">
-                    <label for="skillCount">Beceriler / Skills:</label>
-                    <input type="number" id="skillCount" value="0" min="0">
-                </div>
-                
-                <div class="form-group">
-                    <label for="mountCount">Binek / Mount:</label>
-                    <input type="number" id="mountCount" value="0" min="0">
-                </div>
-                <div class="form-group">
-                    <label for="mergeMountCount">Birleştirilebilir Binek / Mergeable Mount:</label>
-                    <input type="number" id="mergeMountCount" value="0" min="0">
-                </div>
-                
-                <div class="form-group">
-                    <label for="eggCount">Yumurta Kabuğu / Egg Shell:</label>
-                    <input type="number" id="eggCount" value="0" min="0">
-                </div>
-                <div class="form-group">
-                    <label for="mergeEggCount">Birleştirilebilir Yum. / Mergeable Egg:</label>
-                    <input type="number" id="mergeEggCount" value="0" min="0">
-                </div>
+                <div class="form-group"><label for="hammerCount">Çekiç / Hammer:</label><input type="number" id="hammerCount" value="0" min="0"></div>
+                <div class="form-group"><label for="skillCount">Beceriler / Skills:</label><input type="number" id="skillCount" value="0" min="0"></div>
+                <div class="form-group"><label for="mountCount">Binek / Mount:</label><input type="number" id="mountCount" value="0" min="0"></div>
+                <div class="form-group"><label for="mergeMountCount">Birleştirilebilir Binek / Mergeable Mount:</label><input type="number" id="mergeMountCount" value="0" min="0"></div>
+                <div class="form-group"><label for="eggCount">Yumurta Kabuğu / Egg Shell:</label><input type="number" id="eggCount" value="0" min="0"></div>
+                <div class="form-group"><label for="mergeEggCount">Birleştirilebilir Yum. / Mergeable Egg:</label><input type="number" id="mergeEggCount" value="0" min="0"></div>
             </div>
             <button onclick="app.savePlayerData()">Stok Bilgilerimi Kaydet / Save Data</button>
 
-            <!-- Data Display Table -->
             <h2 style="margin-top: 40px;">Klan Stok Durumu / Clan Inventory Status</h2>
             <div style="overflow-x:auto;">
                 <table id="dataTable">
@@ -223,9 +86,7 @@
                             <th>Beceriler</th>
                         </tr>
                     </thead>
-                    <tbody id="tableBody">
-                        <!-- Dynamic content will be injected here -->
-                    </tbody>
+                    <tbody id="tableBody"></tbody>
                     <tfoot>
                         <tr class="total-row">
                             <td>GENEL TOPLAM / TOTAL</td>
@@ -243,32 +104,16 @@
     </div>
 
     <script>
-        /**
-         * ETERNAL FIRE Clan Management Application Logic
-         * Organized into a modular object for better open-source readability
-         */
-        const app = {
-            // Configuration
-            config: {
-                authPin: "1881",
-                storageKey: "eternalFireData_v1"
-            },
-
-            // State management
-            state: {
-                data: {}
-            },
-
-            // Initialize application
+        // "var" kullanılarak tarayıcı uyumluluğu ve onclick buton sorunu çözüldü
+        var app = {
+            config: { authPin: "1881", storageKey: "eternalFireData_v1" },
+            state: { data: {} },
             init: function() {
                 this.bindEvents();
                 this.loadDataFromStorage();
             },
-
-            // Event Listeners
             bindEvents: function() {
-                // Allow pressing Enter key to login
-                const pwdInput = document.getElementById("passwordInput");
+                var pwdInput = document.getElementById("passwordInput");
                 if(pwdInput) {
                     pwdInput.addEventListener("keypress", (event) => {
                         if (event.key === "Enter") {
@@ -278,10 +123,8 @@
                     });
                 }
             },
-
-            // Authentication Handler
             authenticate: function() {
-                const pass = document.getElementById("passwordInput").value;
+                var pass = document.getElementById("passwordInput").value;
                 if (pass === this.config.authPin) {
                     this.switchView('login-section', 'dashboard-section');
                     this.renderTable();
@@ -289,17 +132,13 @@
                     alert("Hatalı şifre! / Incorrect password!");
                 }
             },
-
-            // UI View Switcher
             switchView: function(hideId, showId) {
                 document.getElementById(hideId).classList.remove("active");
                 document.getElementById(showId).classList.add("active");
             },
-
-            // Save new player data
             savePlayerData: function() {
-                const nameInput = document.getElementById("playerName");
-                const name = nameInput.value.trim();
+                var nameInput = document.getElementById("playerName");
+                var name = nameInput.value.trim();
                 
                 if (!name) { 
                     alert("Lütfen kayıt için oyun içi adınızı girin! / Please enter your player name!"); 
@@ -307,8 +146,7 @@
                     return; 
                 }
 
-                // Gather data from form, fallback to 0 if invalid
-                const playerData = {
+                var playerData = {
                     hammer: parseInt(document.getElementById("hammerCount").value, 10) || 0,
                     mount: parseInt(document.getElementById("mountCount").value, 10) || 0,
                     mergeMount: parseInt(document.getElementById("mergeMountCount").value, 10) || 0,
@@ -317,46 +155,34 @@
                     skill: parseInt(document.getElementById("skillCount").value, 10) || 0
                 };
 
-                // Update state and persistent storage
                 this.state.data[name] = playerData;
                 this.persistData();
                 
-                alert(${name} adlı oyuncunun stok bilgileri başarıyla güncellendi! / Data updated successfully!);
+                alert(name + " adlı oyuncunun stok bilgileri başarıyla güncellendi! / Data updated successfully!");
                 this.renderTable();
             },
-
-            // Load data from LocalStorage
             loadDataFromStorage: function() {
                 try {
-                    const stored = localStorage.getItem(this.config.storageKey);
-                    if (stored) {
-                        this.state.data = JSON.parse(stored);
-                    }
+                    var stored = localStorage.getItem(this.config.storageKey);
+                    if (stored) { this.state.data = JSON.parse(stored); }
                 } catch (e) {
-                    console.error("Veri yüklenirken hata oluştu / Error loading data:", e);
+                    console.error("Veri yüklenirken hata / Error loading data:", e);
                     this.state.data = {};
                 }
             },
-
-            // Save data to LocalStorage
             persistData: function() {
                 localStorage.setItem(this.config.storageKey, JSON.stringify(this.state.data));
             },
-
-            // Update UI Table with current state
             renderTable: function() {
-                const tbody = document.getElementById("tableBody");
-                tbody.innerHTML = ""; // Clear existing rows
+                var tbody = document.getElementById("tableBody");
+                tbody.innerHTML = ""; 
 
-                // Initialize total counters
-                const totals = { hammer: 0, mount: 0, mergeMount: 0, egg: 0, mergeEgg: 0, skill: 0 };
+                var totals = { hammer: 0, mount: 0, mergeMount: 0, egg: 0, mergeEgg: 0, skill: 0 };
 
-                // Populate rows and calculate totals
-                for (const player in this.state.data) {
+                for (var player in this.state.data) {
                     if (this.state.data.hasOwnProperty(player)) {
-                        const pd = this.state.data[player];
+                        var pd = this.state.data[player];
                         
-                        // Add to totals
                         totals.hammer += pd.hammer;
                         totals.mount += pd.mount;
                         totals.mergeMount += pd.mergeMount;
@@ -364,22 +190,18 @@
                         totals.mergeEgg += pd.mergeEgg;
                         totals.skill += pd.skill;
 
-                        // Create table row
-                        const tr = document.createElement('tr');
-                        tr.innerHTML = `
-                            <td>${this.escapeHTML(player)}</td>
-                            <td>${pd.hammer}</td>
-                            <td>${pd.mount}</td>
-                            <td>${pd.mergeMount}</td>
-                            <td>${pd.egg}</td>
-                            <td>${pd.mergeEgg}</td>
-                            <td>${pd.skill}</td>
-                        `;
+                        var tr = document.createElement('tr');
+                        tr.innerHTML = "<td>" + this.escapeHTML(player) + "</td>" +
+                            "<td>" + pd.hammer + "</td>" +
+                            "<td>" + pd.mount + "</td>" +
+                            "<td>" + pd.mergeMount + "</td>" +
+                            "<td>" + pd.egg + "</td>" +
+                            "<td>" + pd.mergeEgg + "</td>" +
+                            "<td>" + pd.skill + "</td>";
                         tbody.appendChild(tr);
                     }
                 }
 
-                // Update footer totals
                 document.getElementById("totalHammer").innerText = totals.hammer;
                 document.getElementById("totalMount").innerText = totals.mount;
                 document.getElementById("totalMergeMount").innerText = totals.mergeMount;
@@ -387,23 +209,14 @@
                 document.getElementById("totalMergeEgg").innerText = totals.mergeEgg;
                 document.getElementById("totalSkill").innerText = totals.skill;
             },
-
-            // Basic XSS Protection
             escapeHTML: function(str) {
-                return str.replace(/[&<>'"]/g, 
-                    tag => ({
-                        '&': '&amp;',
-                        '<': '&lt;',
-                        '>': '&gt;',
-                        "'": '&#39;',
-                        '"': '&quot;'
-                    }[tag])
-                );
+                return str.replace(/[&<>'"]/g, function(tag) {
+                    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag];
+                });
             }
         };
 
-        // Bootstrap the application when the DOM is ready
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', function() {
             app.init();
         });
     </script>
